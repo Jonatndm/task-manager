@@ -1,0 +1,10 @@
+<div *ngIf="message" 
+     class="fixed top-4 left-1/2 transform -translate-x-1/2 px-4 py-3 rounded shadow-lg transition-opacity duration-500 ease-in-out"
+     [ngClass]="{
+       'bg-green-500': alertType === 'success',
+       'bg-red-500': alertType === 'error',
+       'bg-yellow-500': alertType === 'warning',
+       'text-white': alertType === 'success' || alertType === 'error' || alertType === 'warning'
+     }">
+  <p>{{ message }}</p>
+</div>

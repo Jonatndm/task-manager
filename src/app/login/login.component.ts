@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, RouterLink],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  constructor(private router: Router) {}
+  constructor(private router: Router, private alertService: AlertService) {}
 
   onSubmit(){
     const storedUser = localStorage.getItem('user');
@@ -24,11 +24,11 @@ export class LoginComponent {
         this.router.navigate(['/tasks']);
       }
       else{
-        alert('Credenciales invalidas!');
+        this.alertService.showAlert('Credenciales invalidas!', 'error');
       }
     }
     else{
-      alert('No hay usuario registrado');
+      this.alertService.showAlert('No hay usuario registrado', 'warning');
     }
   }
   
