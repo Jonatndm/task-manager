@@ -21,6 +21,7 @@ export class LoginComponent {
       const user = JSON.parse(storedUser);
       if(user.email === this.email && user.password === this.password){
         localStorage.setItem('email', this.email);
+        this.alertService.showAlert('Usuario ingresado correctamene!', 'success');
         this.router.navigate(['/tasks']);
       }
       else{

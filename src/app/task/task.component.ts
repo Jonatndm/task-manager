@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './task.component.html',
-  styleUrl: './task.component.css'
 })
 export class TaskComponent {
   tasks: Task[] = [];
