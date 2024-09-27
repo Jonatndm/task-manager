@@ -10,15 +10,15 @@ import { AlertService } from '../alert.service';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  email: string = '';
+  user: string = '';
   password: string = '';
 
   constructor(private router: Router, private alertService: AlertService){}
 
   onRegister(){
-    if(this.email && this.password){
+    if(this.user && this.password){
       const user = {
-        email: this.email,
+        username: this.user,
         password: this.password,
       };
       localStorage.setItem('user', JSON.stringify(user));

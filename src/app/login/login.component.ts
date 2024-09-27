@@ -10,17 +10,17 @@ import { AlertService } from '../alert.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  email: string = '';
+  user: string = '';
   password: string = '';
   constructor(private router: Router, private alertService: AlertService) {}
 
   onSubmit(){
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('username');
 
     if(storedUser){
       const user = JSON.parse(storedUser);
-      if(user.email === this.email && user.password === this.password){
-        localStorage.setItem('email', this.email);
+      if(user.username === this.user && user.password === this.password){
+        localStorage.setItem('user', this.user);
         this.alertService.showAlert('Usuario ingresado correctamene!', 'success');
         this.router.navigate(['/tasks']);
       }

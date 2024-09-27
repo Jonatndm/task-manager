@@ -15,15 +15,15 @@ export class TaskService {
   
   //Obtener las tareas del localstorage
   getTasks(): Task[]{
-    const email = localStorage.getItem('email');
-    const tasks = localStorage.getItem(`${email}_tasks`);
+    const username = localStorage.getItem('username');
+    const tasks = localStorage.getItem(`${username}_tasks`);
     return tasks ? JSON.parse(tasks) : [];
   }
 
   //Guardar las tareas en el localstorage
   saveTasks(tasks: Task[]):void {
-    const email = localStorage.getItem('email');
-    localStorage.setItem(`${email}_tasks`, JSON.stringify(tasks));
+    const username = localStorage.getItem('username');
+    localStorage.setItem(`${username}_tasks`, JSON.stringify(tasks));
   }
    // Obtener el siguiente ID único
    getNextId(): number {
