@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center justify-start min-h-screen bg-gray-100">
     <!-- Contenedor del formulario -->
     <div class="w-full max-w-xs mb-4 pt-4">
-        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8" (ngSubmit)="onSubmit()" #taskForm="ngForm">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8" (ngSubmit)="addTask()" #taskForm="ngForm">
             <!-- Campo para Título de la Tarea -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
