@@ -11,12 +11,12 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-   // Register a new user
+   // Registrar un nuevo usuario
    register(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/register`, { username, password });
   }
 
-  // Login and get the JWT token
+  // Loguearse y obtener el token
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { username, password })
       .pipe(
@@ -31,14 +31,9 @@ export class AuthService {
       );
   }
 
-  // Store the token in localStorage
+  // Setear el token en el localstorage
   setToken(token: string): void {
     localStorage.setItem('token', token);
-  }
-
-  // Get the token from localStorage
-  getToken(): string | null {
-    return localStorage.getItem('token');
   }
 
   // Remove the token (logout)

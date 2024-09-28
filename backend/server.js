@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db'); // Importar la función de conexión a la base de datos
+const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth');
 const tasksRoutes = require('./routes/tasks');
 
