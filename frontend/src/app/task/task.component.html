@@ -1,0 +1,75 @@
+<div class="flex flex-col items-center justify-start min-h-screen bg-gray-100">
+     <!-- Contenedor para el botón de deslogueo alineado a la derecha -->
+     <div class="w-full flex justify-end p-4">
+        <div *ngIf="authService.isAuthenticated()">
+            <button (click)="logout()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Desloguearse
+            </button>
+        </div>
+    </div>
+    <!-- Contenedor del formulario -->
+    <div class="w-full max-w-xs mb-4 pt-4">
+        <form class="bg-white shadow-md rounded px-8 pt-6 pb-8" (ngSubmit)="addTask()" #taskForm="ngForm">
+            <!-- Campo para Título de la Tarea -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                    Título de la Tarea
+                </label>
+                <input
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="title" type="text" placeholder="Escribe el título" [(ngModel)]="newTask.title" name="title"
+                    required>
+            </div>
+
+            <!-- Campo para Descripción de la Tarea -->
+            <div class="mb-2">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+                    Descripción
+                </label>
+                <textarea
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                    id="description" placeholder="Escribe la descripción" rows="4" [(ngModel)]="newTask.description"
+                    name="description" required></textarea>
+            </div>
+
+            <!-- Botón para crear la tarea -->
+            <div class="flex items-center justify-center">
+                <button
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit" [disabled]="!taskForm.form.valid">
+                    Crear Tarea
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Contenedor para la lista de tareas -->
+    <div class="w-full max-w-xs overflow-y-auto">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Lista de Tareas</h2>
+            <ul class="space-y-4">
+                <li *ngFor="let task of tasks"
+                    class="bg-gray-100 shadow-md rounded-lg p-4 flex justify-between items-center">
+                    <!-- Título y descripción de la tarea -->
+                    <div>
+                        <span [ngClass]="{'completed': task.completed}" [class.completed]="task.completed"
+                            class="text-lg font-semibold text-gray-900">{{ task.title }}</span>
+                        <p [ngClass]="{'completed': task.completed}" class="text-gray-600">{{ task.description }}</p>
+                    </div>
+
+                    <!-- Botones para marcar como completada o eliminar -->
+                    <div class="space-x-2">
+                        <button (click)="markAsCompleted(task)"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 text-sm rounded focus:outline-none focus:shadow-outline">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </button>
+                        <button (click)="deleteTask(task)"
+                            class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 text-sm rounded focus:outline-none focus:shadow-outline">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
