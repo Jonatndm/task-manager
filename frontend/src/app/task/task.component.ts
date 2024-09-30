@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Task } from './task.model';
 import { CommonModule } from '@angular/common';
@@ -12,7 +12,7 @@ import { AuthService } from '../Service/auth.service';
   imports: [FormsModule, CommonModule],
   templateUrl: './task.component.html',
 })
-export class TaskComponent {
+export class TaskComponent implements OnInit {
   tasks: Task[] = [];
 
   newTask: Task = {
@@ -37,7 +37,7 @@ export class TaskComponent {
         this.tasks = tasks
       },
       error: (error) => {
-        console.error('Error al cargar las tareas', error);
+        this.alertService.showAlert('Error al cargar las tareas', 'error');
       }
     });
   }
