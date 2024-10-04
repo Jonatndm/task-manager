@@ -23,8 +23,7 @@ export class TaskComponent implements OnInit {
   }
 
   //Constructor para inicializar los servicios
-  constructor(private alertService: AlertService, private taskService: TaskService, public authService: AuthService) {
-  }
+  constructor(private alertService: AlertService, private taskService: TaskService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadTask();
@@ -81,6 +80,7 @@ export class TaskComponent implements OnInit {
     this.taskService.deleteTask(task._id).subscribe({
       next: () => {
         this.tasks = this.tasks.filter(t => t._id !== task._id);  // Actualiza la lista de tareas
+        this.alertService.showAlert('Tarrea borrada', 'success');
       },
       error: (error) => {
         console.error('Error al eliminar la tarea', error);
