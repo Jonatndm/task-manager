@@ -10,7 +10,6 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [RouterOutlet, TaskComponent, RouterModule, AlertComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
 }

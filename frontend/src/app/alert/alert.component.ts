@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertService, AlertType } from '../alert.service';
+import { AlertService, AlertType } from '../Service/alert.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

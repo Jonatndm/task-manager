@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../Service/alert.service';
 import { AuthService } from '../Service/auth.service';
 
 @Component({

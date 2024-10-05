@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
-import { Task } from './task.model';
+import { Task } from '../Models/task.model';
 import { CommonModule } from '@angular/common';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../Service/alert.service';
 import { TaskService } from '../Service/tasks.service';
 import { AuthService } from '../Service/auth.service';
 
