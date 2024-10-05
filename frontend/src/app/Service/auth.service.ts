@@ -36,16 +36,15 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  // Remove the token (logout)
+  // Borrar el token 
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 
-  // Check if the user is authenticated
+  // Chequea si esta autenticado con el token
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    // Aquí podrías realizar más validaciones del token si es necesario (expiración, formato)
     return !!token;
   }
 

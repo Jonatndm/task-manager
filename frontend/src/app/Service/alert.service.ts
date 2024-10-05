@@ -13,7 +13,6 @@ export class AlertService {
   //Mostrar Alerta
   showAlert(message: string, type: AlertType = 'success') {
     this.alertSubject.next({message, type});
-    //Mostrar por 3 segundos;
     setTimeout(() => {
       this.clearAlert();
     }, 3000);

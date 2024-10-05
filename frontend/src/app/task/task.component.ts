@@ -64,10 +64,10 @@ export class TaskComponent implements OnInit {
   
   //Metodo para alternar si una tarea es completada
   markAsCompleted(task: any): void{
-    const completed = !task.completed;  // Alterna el estado completado
+    const completed = !task.completed; 
     this.taskService.updateTask(task._id, completed).subscribe({
       next: (updatedTask) => {
-        task.completed = updatedTask.completed;  // Actualiza el estado de la tarea en la interfaz
+        task.completed = updatedTask.completed; 
       },
       error: (error) => {
         console.error('Error al actualizar la tarea', error);
@@ -79,7 +79,7 @@ export class TaskComponent implements OnInit {
   deleteTask(task: Task): void{
     this.taskService.deleteTask(task._id).subscribe({
       next: () => {
-        this.tasks = this.tasks.filter(t => t._id !== task._id);  // Actualiza la lista de tareas
+        this.tasks = this.tasks.filter(t => t._id !== task._id); 
         this.alertService.showAlert('Tarrea borrada', 'success');
       },
       error: (error) => {

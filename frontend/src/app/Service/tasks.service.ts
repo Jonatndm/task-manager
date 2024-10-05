@@ -49,7 +49,7 @@ export class TaskService {
   deleteTask(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}` // Envía el token JWT
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     });
   }

@@ -14,7 +14,7 @@ connectDB();
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // Para parsear el cuerpo de las solicitudes JSON
+app.use(express.json());
 
 // Rutas
 app.use('/auth', authRoutes);
