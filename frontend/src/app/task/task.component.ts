@@ -36,13 +36,7 @@ export class TaskComponent implements OnInit {
 
     // Escuchar el evento de actualización de tareas
     this.notificationService.listen('actualizacion-tareas').subscribe((data) => {
-      // Mostrar mensaje de notificación
       this.alertService.showAlert(data.message + ' ' + data.task.title, 'success');
-
-      // Actualizar la lista de tareas en tiempo real
-      if (data.task) {
-        this.tasks.push(data.task);
-      }
     });
 
     this.notificationService.listen('tarea-eliminada').subscribe((data) => {
@@ -79,6 +73,7 @@ export class TaskComponent implements OnInit {
     if (this.newTask.title && this.newTask.description) {
       this.taskService.createTask(this.newTask.title, this.newTask.description).subscribe({
         next: (task) => {
+          this.tasks.push(task);
           this.alertService.showAlert('Tarea agregada!', 'success');
           this.newTask = {_id: '', title: '', description: '', completed: false};
         },
