@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AlertService } from '../Service/alert.service';
 import { TaskService } from '../Service/tasks.service';
 import { AuthService } from '../Service/auth.service';
+import { NotificationService } from '../Service/notification.service';
 
 @Component({
   selector: 'app-task',
@@ -23,10 +24,39 @@ export class TaskComponent implements OnInit {
   }
 
   //Constructor para inicializar los servicios
-  constructor(private alertService: AlertService, private taskService: TaskService, public authService: AuthService) { }
+  constructor(
+    private alertService: AlertService, 
+    private taskService: TaskService, 
+    public authService: AuthService, 
+    public notificationService: NotificationService
+  ) { }
 
   ngOnInit(): void {
     this.loadTask();
+
+    // Escuchar el evento de actualización de tareas
+    this.notificationService.listen('actualizacion-tareas').subscribe((data) => {
+      // Mostrar mensaje de notificación
+      this.alertService.showAlert(data.message + ' ' + data.task.title, 'success');
+
+      // Actualizar la lista de tareas en tiempo real
+      if (data.task) {
+        this.tasks.push(data.task);
+      }
+    });
+
+    this.notificationService.listen('tarea-eliminada').subscribe((data) => {
+      this.tasks = this.tasks.filter((task) => task._id !== data.id);
+      this.alertService.showAlert(data.message + ' ' + data.task.title, 'success');
+    });
+
+    this.notificationService.listen('tarea-actualizada').subscribe((data) => {
+      const index = this.tasks.findIndex((task) => task._id === data.task.id);
+      if (index !== -1) {
+        this.tasks[index] = data.task;
+      }
+      this.alertService.showAlert(data.message + ' ' + data.task.title, 'success');
+    });
   }
 
   //Cargar las tareas
@@ -49,7 +79,6 @@ export class TaskComponent implements OnInit {
     if (this.newTask.title && this.newTask.description) {
       this.taskService.createTask(this.newTask.title, this.newTask.description).subscribe({
         next: (task) => {
-          this.tasks.push(task);
           this.alertService.showAlert('Tarea agregada!', 'success');
           this.newTask = {_id: '', title: '', description: '', completed: false};
         },
